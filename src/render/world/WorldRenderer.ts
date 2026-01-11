@@ -1,11 +1,10 @@
-import { GameEvent } from '../../game/events/eventTypes/GameEvent';
 import type { GameState } from '../../game/state/GameState';
 import { IRenderer } from '../IRenderer';
 
 export class WorldRenderer implements IRenderer {
   constructor(private ctx: CanvasRenderingContext2D) {}
 
-  render(state: GameState, events: GameEvent[]) {
+  render(state: GameState) {
     const { ctx } = this;
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     for (const e of state.entities) {

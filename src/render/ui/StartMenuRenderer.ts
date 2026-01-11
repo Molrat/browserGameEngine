@@ -1,11 +1,10 @@
 import { IRenderer } from "../IRenderer";
 import type { GameState } from "../../game/state/GameState";
-import { GameEvent } from "../../game/events/EventBus";
 
 export class StartMenuRenderer implements IRenderer{
     constructor(private ctx: CanvasRenderingContext2D) {}
 
-    render(gameState: GameState, events: GameEvent[]): void {
+    render(gameState: GameState): void {
         if (gameState.ui.openMenu !== 'start') return;
         const s = gameState.ui.startMenu;
         const statuses = s.playerConnections.map(pc => pc.status);

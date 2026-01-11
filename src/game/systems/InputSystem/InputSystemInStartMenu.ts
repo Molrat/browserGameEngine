@@ -30,13 +30,15 @@ export class InputSystemInStartMenu implements ISystem {
                 slot = connections.findIndex(pc => pc.status === 'notJoined');
                 if (slot !== -1) {
                     connections[slot] = { status: 'joined', controllerId: id };
+                    eventBus.emit({ type: 'StartMenuPlayerJoinedEffect', slot });
                 }
                 }
             }
 
             if (triangle && !this.prevTriangle[id]) {
                 if (slot !== -1 && connections[slot].status === 'joined') {
-                connections[slot] = { status: 'ready', controllerId: id };
+                    connections[slot] = { status: 'ready', controllerId: id };
+                    eventBus.emit({ type: 'StartMenuPlayerReadyEffect', slot });
                 }
             }
 

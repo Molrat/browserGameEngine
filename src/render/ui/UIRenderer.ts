@@ -1,4 +1,3 @@
-import { GameEvent } from '../../game/events/eventTypes/GameEvent';
 import type { GameState } from '../../game/state/GameState';
 import { IRenderer } from '../IRenderer';
 import { StartMenuRenderer } from './StartMenuRenderer';
@@ -12,11 +11,11 @@ export class UIRenderer implements IRenderer {
     this.reconnectControllerRenderer = new ReconnectControllerRenderer(ctx);
   }
 
-  render(state: GameState, events: GameEvent[]) {
+  render(state: GameState) {
     if (state.ui.openMenu == 'start') {
-      this.startMenuRenderer.render(state, events);
+      this.startMenuRenderer.render(state);
     } else if (state.ui.openMenu == 'reconnectControllerMenu') {
-      this.reconnectControllerRenderer.render(state, events);
+      this.reconnectControllerRenderer.render(state);
     }
   }
 }

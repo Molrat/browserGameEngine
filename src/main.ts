@@ -2,7 +2,8 @@ import { GameLoop } from './game/loop/GameLoop';
 import { InputSystem } from './game/systems/InputSystem/InputSystem';
 import { MovementSystem } from './game/systems/MovementSystem';
 import { DisconnectCheckSystem } from './game/systems/DisconnectCheckSystem';
-import { AnimationRenderer } from './render/animations/AnimationRenderer';
+import { PlayerJoinedEffectRenderer } from './render/effects/PlayerJoinedEffectRenderer';
+import { PlayerReadyEffectRenderer } from './render/effects/PlayerReadyEffectRenderer';
 import { UIRenderer } from './render/ui/UIRenderer';
 import { WorldRenderer } from './render/world/WorldRenderer';
 
@@ -11,8 +12,12 @@ const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
 const renderers = [
     new WorldRenderer(ctx), 
-    new AnimationRenderer(ctx),
     new UIRenderer(ctx)
+];
+
+const effectRenderers = [
+    new PlayerJoinedEffectRenderer(ctx),
+    new PlayerReadyEffectRenderer(ctx),
 ];
 
 const systems = [
@@ -20,6 +25,6 @@ const systems = [
     new InputSystem(),
     new MovementSystem(),
 ]
-const loop = new GameLoop(systems, renderers);
+const loop = new GameLoop(systems, renderers, effectRenderers);
 
 loop.start();

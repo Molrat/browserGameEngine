@@ -91,9 +91,11 @@ function isMovable(e: Entity): e is Entity & IMovable {
 - Systems use queries to filter entities safely. The core logic of the system only acts on the filtered entities that conform to the expected interface(s).
 
 ## 7. Systems
-- Each system is a class with an update(state: GameState, dt: number) method.
+- Each system is a class with an update(state: GameState, event dt: number) method.
 - Systems read and mutate GameState only.
 - Systems use queries to filter entities.
+- The logic of each system take interfaces as input, never raw entities!
+- Break systems as much as possible into smaller systems for single responsibility.
 
 ## 8. Rendering Architecture (Canvas / ctx)
 

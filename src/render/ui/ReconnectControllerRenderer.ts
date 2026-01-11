@@ -1,11 +1,10 @@
 import { IRenderer } from "../IRenderer";
 import type { GameState } from "../../game/state/GameState";
-import { GameEvent } from "../../game/events/eventTypes/GameEvent";
 
 export class ReconnectControllerRenderer implements IRenderer {
   constructor(private ctx: CanvasRenderingContext2D) {}
 
-  render(gameState: GameState, events: GameEvent[]): void {
+  render(gameState: GameState): void {
     if (gameState.ui.openMenu !== 'reconnectControllerMenu') return;
     const { ctx } = this;
     const { width, height } = ctx.canvas;
