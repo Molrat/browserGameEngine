@@ -10,6 +10,7 @@ export class StateInitializer {
       entities: [],
       ui: {
         openMenu: 'start',
+        previousMenuBeforeDisconnect: null,
         startMenu,
       },
       time: { total: 0 },

@@ -1,6 +1,7 @@
 import { GameLoop } from './game/loop/GameLoop';
 import { InputSystem } from './game/systems/InputSystem/InputSystem';
 import { MovementSystem } from './game/systems/MovementSystem';
+import { DisconnectCheckSystem } from './game/systems/DisconnectCheckSystem';
 import { AnimationRenderer } from './render/animations/AnimationRenderer';
 import { UIRenderer } from './render/ui/UIRenderer';
 import { WorldRenderer } from './render/world/WorldRenderer';
@@ -15,6 +16,7 @@ const renderers = [
 ];
 
 const systems = [
+    new DisconnectCheckSystem(),
     new InputSystem(),
     new MovementSystem(),
 ]
