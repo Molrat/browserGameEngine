@@ -44,7 +44,7 @@ src/
 │  │  ├─ components/  # Movable.ts, Damageable.ts, Renderable.ts
 │  │  └─ entities/    # Player.ts, Enemy.ts, Projectile.ts
 │  ├─ systems/        # Game logic systems
-│  ├─ queries/        # Runtime type guards (e.g., isMovable)
+│  ├─ queries/        # Runtime type guards (e.g., IMovable)
 │  ├─ loop/           # Game loop orchestration
 │  ├─ events/         # Side-effect events
 │  └─ config/         # Constants, balance
@@ -78,6 +78,7 @@ Input adapters live outside GameState.
 
 ## 6. Queries / Type Guards
 
+- Each query has its own subfolder under game/queries with an interface file and a query file.
 - Interfaces (e.g., IMovable) define compile-time contracts.
 - Queries (e.g., isMovable) check runtime entity composition.
 
@@ -87,9 +88,14 @@ function isMovable(e: Entity): e is Entity & IMovable {
   return 'position' in e && 'velocity' in e;
 }
 
-- Systems use queries to filter entities safely.
+- Systems use queries to filter entities safely. The core logic of the system only acts on the filtered entities that conform to the expected interface(s).
 
-## 7. Rendering Architecture (Canvas / ctx)
+## 7. Systems
+- Each system is a class with an update(state: GameState, dt: number) method.
+- Systems read and mutate GameState only.
+- Systems use queries to filter entities.
+
+## 8. Rendering Architecture (Canvas / ctx)
 
 Rendering Overview
 - Rendering is completely separated from gameplay logic.
@@ -112,7 +118,7 @@ Rendering Layers
   - Purely visual, do not affect game logic.
   - Animations are type data stored in AnimationState inside the render/animations/ folder, not part of GameState.
 
-## 8. Game Loop Flow
+## 9. Game Loop Flow
 
 Input Adapter → Input System → GameState → Systems → EventBus → RenderSystem
 
@@ -120,7 +126,7 @@ Input Adapter → Input System → GameState → Systems → EventBus → Render
 - EventBus triggers side effects only.
 - RenderSystem reads GameState + UIState to display.
 
-## 9. Testing Guidelines
+## 1. Testing Guidelines
 
 - Unit tests: Each system independently using mocked GameState.
 - Input tests: Mock InputState.
@@ -129,7 +135,7 @@ Input Adapter → Input System → GameState → Systems → EventBus → Render
 - Use Vitest for speed, TypeScript support, and isolated testing.
 - Tests are pure: no DOM or canvas required for system logic.
 
-## 10. Key Takeaways
+## 11. Key Takeaways
 
 - State = truth, plain data.
 - Systems = deterministic rules.
@@ -141,10 +147,17 @@ Input Adapter → Input System → GameState → Systems → EventBus → Render
 - Tests = focus on deterministic systems.
 - AI prompts = short and descriptive, rely on this instruction file for rules.
 
-## 11. Coding Standards
-
+## 12. Coding Standards
+- NEVER loose functions not in a class.
+- NEVER multiple classes in one file.
+- NEVER multiple types/interfaces in one file.
 - Files preferably under 100 lines; max 200 lines.
 - Functions under 30 lines.
 - If files/functions are too long, break into smaller, cohesive units.
 - Validate cohesion of properties/functions; split if needed.
 - Never use any.
+- Test for build errors and type safety, and fix the problems.
+- Use descriptive names for types, interfaces, classes, functions, and variables.
+- Follow consistent formatting and indentation.
+- Add comments for complex logic or non-obvious decisions.
+- Keep functions pure where possible; avoid side effects in logic functions.
