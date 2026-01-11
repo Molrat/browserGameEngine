@@ -1,6 +1,6 @@
-import type { GameState } from '../../game/state/GameState';
-import { IRenderer } from '../IRenderer';
-import { getTrianglePoints, transformPoints } from '../../math/triangles';
+import type { GameState } from '../../../game/state/GameState';
+import { IRenderer } from '../../IRenderer';
+import { getTrianglePoints, transformPoints } from '../../../math/triangles';
 
 export class WorldRenderer implements IRenderer {
   constructor(private ctx: CanvasRenderingContext2D) {}

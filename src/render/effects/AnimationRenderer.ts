@@ -1,4 +1,4 @@
-import { EffectsState } from "./AnimationState";
+import { EffectsState } from "./EffectsState";
 import { GameEvent } from "../../game/events/eventTypes/GameEvent";
 import { IEffectRenderer } from "./IEffectRenderer";
 

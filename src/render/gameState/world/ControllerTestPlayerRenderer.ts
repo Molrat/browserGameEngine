@@ -1,8 +1,8 @@
-import { IRenderer } from "../IRenderer";
-import type { GameState } from "../../game/state/GameState";
-import { Vector2 } from "../../math/Vector2";
-import { getTrianglePoints, transformPoints } from "../../math/triangles";
-import { PolygonDrawer } from "../common/PolygonDrawer";
+import { IRenderer } from "../../IRenderer";
+import type { GameState } from "../../../game/state/GameState";
+import { Vector2 } from "../../../math/Vector2";
+import { getTrianglePoints, transformPoints } from "../../../math/triangles";
+import { PolygonDrawer } from "../../common/PolygonDrawer";
 
 export class ControllerTestPlayerRenderer implements IRenderer {
   constructor(private ctx: CanvasRenderingContext2D) {}

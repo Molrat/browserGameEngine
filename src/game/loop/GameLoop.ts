@@ -19,8 +19,9 @@ export class GameLoop {
     const tick = (t: number) => {
       const dt = Math.min(0.033, (t - this.lastTime) / 1000);
       this.lastTime = t;
-      this.update(dt);
-      this.render();
+      this.updateGameState(dt);
+      this.renderGameState();
+      this.eventHandling(); // visual effects and sounds
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
@@ -29,17 +30,20 @@ export class GameLoop {
   stop() {
   }
 
-  private update(dt: number) {
+  private updateGameState(dt: number) {
     this.gameState.time.total += dt;
     for (const system of this.systems) {
       system.update(this.gameState, this.eventBus, dt);
     }
   }
 
-  private render() {
+  private renderGameState() {
     for (const renderer of this.renderers) {
       renderer.render(this.gameState);
     }
+  }
+
+  private eventHandling(){
     const events = this.eventBus.drain();
     for (const sp of this.soundPlayers) {
       sp.play(events);

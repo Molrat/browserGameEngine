@@ -1,5 +1,5 @@
-import type { GameState } from '../../game/state/GameState';
-import { IRenderer } from '../IRenderer';
+import type { GameState } from '../../../game/state/GameState';
+import { IRenderer } from '../../IRenderer';
 import { StartMenuRenderer } from './StartMenuRenderer';
 import { ReconnectControllerRenderer } from './ReconnectControllerRenderer';
 

@@ -1,5 +1,5 @@
-import { IRenderer } from "../IRenderer";
-import type { GameState } from "../../game/state/GameState";
+import { IRenderer } from "../../IRenderer";
+import type { GameState } from "../../../game/state/GameState";
 
 export class StartMenuRenderer implements IRenderer{
     constructor(private ctx: CanvasRenderingContext2D) {}

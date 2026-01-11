@@ -1,5 +1,5 @@
-import { IRenderer } from "../IRenderer";
-import type { GameState } from "../../game/state/GameState";
+import { IRenderer } from "../../IRenderer";
+import type { GameState } from "../../../game/state/GameState";
 
 export class ReconnectControllerRenderer implements IRenderer {
   constructor(private ctx: CanvasRenderingContext2D) {}

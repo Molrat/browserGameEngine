@@ -4,10 +4,10 @@ import { MovementSystem } from './game/systems/MovementSystem';
 import { DisconnectCheckSystem } from './game/systems/DisconnectCheckSystem';
 import { PlayerJoinedEffectRenderer } from './render/effects/PlayerJoinedEffectRenderer';
 import { PlayerReadyEffectRenderer } from './render/effects/PlayerReadyEffectRenderer';
-import { UIRenderer } from './render/ui/UIRenderer';
-import { WorldRenderer } from './render/world/WorldRenderer';
-import { ControllerTestBackgroundRenderer } from './render/world/ControllerTestBackgroundRenderer';
-import { ControllerTestPlayerRenderer } from './render/world/ControllerTestPlayerRenderer';
+import { UIRenderer } from './render/gameState/ui/UIRenderer';
+import { WorldRenderer } from './render/gameState/world/WorldRenderer';
+import { ControllerTestBackgroundRenderer } from './render/gameState/world/ControllerTestBackgroundRenderer';
+import { ControllerTestPlayerRenderer } from './render/gameState/world/ControllerTestPlayerRenderer';
 import { StartMenuSoundPlayer } from './soundPlayers/StartMenuSoundPlayer';
 import { ControlMovementTestSystem } from './game/systems/controllerTestScreen/ControlTestMovementSystem';
 
