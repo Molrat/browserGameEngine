@@ -1,5 +1,5 @@
 import { GameLoop } from './game/loop/GameLoop';
-import { InputSystem } from './game/systems/InputSystem';
+import { InputSystem } from './game/systems/InputSystem/InputSystem';
 import { MovementSystem } from './game/systems/MovementSystem';
 import { AnimationRenderer } from './render/animations/AnimationRenderer';
 import { UIRenderer } from './render/ui/UIRenderer';
