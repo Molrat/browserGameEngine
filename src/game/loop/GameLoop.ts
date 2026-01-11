@@ -2,16 +2,22 @@ import { EventBus } from '../events/EventBus';
 import { IRenderer} from '../../render/IRenderer';
 import { IEffectRenderer } from '../../render/effects/IEffectRenderer';
 import { ISoundPlayer } from '../../soundPlayers/ISoundPlayer';
-import { StateInitializer } from '../state/StateInitializer';
 import { ISystem } from '../systems/ISystem';
+import { IInputInjector } from '../../input/IInputInjector';
+import { GameState } from '../state/GameState';
 
 
 export class GameLoop {
   private lastTime = 0;
-  private gameState = StateInitializer.createInitialGameState();
-  private eventBus: EventBus = new EventBus();
 
-  constructor(private systems: ISystem[], private renderers: IRenderer[], private effectRenderers: IEffectRenderer[], private soundPlayers: ISoundPlayer[]) {
+  constructor(
+    private gameState: GameState,
+    private eventBus: EventBus,
+    private inputInjectors: IInputInjector[],
+    private systems: ISystem[], 
+    private renderers: IRenderer[], 
+    private effectRenderers: IEffectRenderer[], 
+    private soundPlayers: ISoundPlayer[]) {
   }
 
   start() {
@@ -19,6 +25,7 @@ export class GameLoop {
     const tick = (t: number) => {
       const dt = Math.min(0.033, (t - this.lastTime) / 1000);
       this.lastTime = t;
+      this.updateGameStateWithInput();
       this.updateGameState(dt);
       this.renderGameState();
       this.eventHandling(); // visual effects and sounds
@@ -28,6 +35,12 @@ export class GameLoop {
   }
 
   stop() {
+  }
+
+  private updateGameStateWithInput() {
+    for (const injector of this.inputInjectors) {
+      injector.injectInputIntoState(this.gameState);
+    }
   }
 
   private updateGameState(dt: number) {
