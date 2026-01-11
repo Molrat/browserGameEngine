@@ -52,9 +52,10 @@ src/
 ├─ render/            # Renderer
 │  ├─ world/          # world and entity rendering
 │  ├─ ui/             # UI rendering (HUD, menus)
-│  ├─ animations/     # Visual effects / animations
+│  ├─ effects/        # Event-driven visual effects / animations
+├─ soundPlayers/      # Event-driven sound playback systems
 ├─ math/              # Vector math, collision functions
-├─ assets/            # Sprites, other assets
+├─ assets/            # Sprites, sounds, other assets
 ├─ utils/             # Utility functions, id generators, RNG
 └─ main.ts
 

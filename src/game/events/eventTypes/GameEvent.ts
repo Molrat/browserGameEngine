@@ -1,3 +1,3 @@
 export type GameEvent =
-	| { type: 'StartMenuPlayerJoinedEffect'; slot: number }
-	| { type: 'StartMenuPlayerReadyEffect'; slot: number };
+	| { type: 'StartMenuPlayerJoined'; slot: number }
+	| { type: 'StartMenuPlayerReady'; slot: number };

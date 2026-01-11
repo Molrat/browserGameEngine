@@ -1,6 +1,7 @@
 import { EventBus } from '../events/EventBus';
 import { IRenderer} from '../../render/IRenderer';
-import { IEffectRenderer } from '../../render/IEffectRenderer';
+import { IEffectRenderer } from '../../render/effects/IEffectRenderer';
+import { ISoundPlayer } from '../../soundPlayers/ISoundPlayer';
 import { StateInitializer } from '../state/StateInitializer';
 import { ISystem } from '../systems/ISystem';
 
@@ -10,7 +11,7 @@ export class GameLoop {
   private gameState = StateInitializer.createInitialGameState();
   private eventBus: EventBus = new EventBus();
 
-  constructor(private systems: ISystem[], private renderers: IRenderer[], private effectRenderers: IEffectRenderer[]) {
+  constructor(private systems: ISystem[], private renderers: IRenderer[], private effectRenderers: IEffectRenderer[], private soundPlayers: ISoundPlayer[]) {
   }
 
   start() {
@@ -40,6 +41,9 @@ export class GameLoop {
       renderer.render(this.gameState);
     }
     const events = this.eventBus.drain();
+    for (const sp of this.soundPlayers) {
+      sp.play(events);
+    }
     for (const effect of this.effectRenderers) {
       effect.render(events);
     }

@@ -2,7 +2,7 @@ import { EffectsState } from "./AnimationState";
 import { GameEvent } from "../../game/events/eventTypes/GameEvent";
 import { IEffectRenderer } from "./IEffectRenderer";
 
-export class PlayerJoinedEffectRenderer implements IEffectRenderer {
+export class EffectsRenderer implements IEffectRenderer {
     private effectsState: EffectsState = {};
     constructor(private ctx: CanvasRenderingContext2D) {}
 

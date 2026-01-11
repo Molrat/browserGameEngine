@@ -6,6 +6,7 @@ import { PlayerJoinedEffectRenderer } from './render/effects/PlayerJoinedEffectR
 import { PlayerReadyEffectRenderer } from './render/effects/PlayerReadyEffectRenderer';
 import { UIRenderer } from './render/ui/UIRenderer';
 import { WorldRenderer } from './render/world/WorldRenderer';
+import { StartMenuSoundPlayer } from './soundPlayers/StartMenuSoundPlayer';
 
 const canvas = document.getElementById('game') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -20,11 +21,15 @@ const effectRenderers = [
     new PlayerReadyEffectRenderer(ctx),
 ];
 
+const soundPlayers = [
+    new StartMenuSoundPlayer(),
+];
+
 const systems = [
     new DisconnectCheckSystem(),
     new InputSystem(),
     new MovementSystem(),
 ]
-const loop = new GameLoop(systems, renderers, effectRenderers);
+const loop = new GameLoop(systems, renderers, effectRenderers, soundPlayers);
 
 loop.start();

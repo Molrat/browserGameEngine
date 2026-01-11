@@ -1,6 +1,6 @@
 import { EffectsState } from "./AnimationState";
 import { GameEvent } from "../../game/events/eventTypes/GameEvent";
-import { IEffectRenderer } from "../IEffectRenderer";
+import { IEffectRenderer } from "./IEffectRenderer";
 
 export class PlayerReadyEffectRenderer implements IEffectRenderer {
   private effectsState: EffectsState = {};
@@ -9,7 +9,7 @@ export class PlayerReadyEffectRenderer implements IEffectRenderer {
   render(events: GameEvent[]) {
     const now = performance.now();
     for (const ev of events) {
-      if (ev.type === 'StartMenuPlayerReadyEffect') {
+      if (ev.type === 'StartMenuPlayerReady') {
         const duration = 600; // ms
         const e = { slot: ev.slot, startTime: now, duration };
         (this.effectsState.readyEffects ??= []).push(e);
