@@ -4,4 +4,5 @@ export interface IMovable {
     position: Vector2;
     velocity: Vector2;
     acceleration: Vector2;
+    orientation: number; // radians
 }

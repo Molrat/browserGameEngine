@@ -10,9 +10,9 @@
 
 ### Separation of Concerns
 - GameState: everything about the world, including entities, previous and current input, and logical UI state.
-- Systems: deterministic rules that update slices of state.
+- Systems: deterministic rules that update slices of state. Systems filter with queries the needed entities for their logic, based on interfaces. The actual logic of each system is then in system function that have those interfaces as inputs.
+- Queries: runtime type guards to filter entities by interface, to serve the systems logic.
 - Events: trigger non-essential side effects.
-- Input Adapters: boundary layer for external input.
 - Renderer: reads GameState to draw visuals, never mutates state.
 
 ### Deterministic Simulation

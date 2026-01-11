@@ -50,13 +50,13 @@ export class InputSystemInStartMenu implements ISystem {
         const anyJoined = statuses.some(st => st !== 'notJoined');
         const allReady = statuses.every(st => st === 'notJoined' || st === 'ready');
         if (anyJoined && allReady) {
-        for (let i = 0; i < connections.length; i++) {
-            const pc = connections[i];
-            if (pc.status === 'ready' && pc.controllerId) {
-            state.entities.push(PlayerFactory.create(pc.controllerId));
+            for (let i = 0; i < connections.length; i++) {
+                const pc = connections[i];
+                if (pc.status === 'ready' && pc.controllerId) {
+                state.entities.push(PlayerFactory.create(pc.controllerId));
+                }
             }
-        }
-        state.ui.openMenu = 'controllerTest';
+            state.ui.openMenu = 'controllerTest';
         }
     }
 }

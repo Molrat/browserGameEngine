@@ -6,13 +6,26 @@ import { PlayerJoinedEffectRenderer } from './render/effects/PlayerJoinedEffectR
 import { PlayerReadyEffectRenderer } from './render/effects/PlayerReadyEffectRenderer';
 import { UIRenderer } from './render/ui/UIRenderer';
 import { WorldRenderer } from './render/world/WorldRenderer';
+import { ControllerTestBackgroundRenderer } from './render/world/ControllerTestBackgroundRenderer';
+import { ControllerTestPlayerRenderer } from './render/world/ControllerTestPlayerRenderer';
 import { StartMenuSoundPlayer } from './soundPlayers/StartMenuSoundPlayer';
+import { ControlMovementTestSystem } from './game/systems/controllerTestScreen/ControlTestMovementSystem';
 
 const canvas = document.getElementById('game') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
+function resizeCanvasToViewport() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+resizeCanvasToViewport();
+window.addEventListener('resize', resizeCanvasToViewport);
+
 const renderers = [
-    new WorldRenderer(ctx), 
+    new ControllerTestBackgroundRenderer(ctx),
+    new ControllerTestPlayerRenderer(ctx),
+    new WorldRenderer(ctx),
     new UIRenderer(ctx)
 ];
 
@@ -28,6 +41,7 @@ const soundPlayers = [
 const systems = [
     new DisconnectCheckSystem(),
     new InputSystem(),
+    new ControlMovementTestSystem(),
     new MovementSystem(),
 ]
 const loop = new GameLoop(systems, renderers, effectRenderers, soundPlayers);

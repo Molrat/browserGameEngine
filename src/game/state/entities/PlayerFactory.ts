@@ -3,16 +3,20 @@ import { nextId } from '../../../utils/id';
 
 export class PlayerFactory {
   static create(controllerId: string): Player {
+    const idx = Number(controllerId) || 0;
+    const palette = ['#ef4444', '#22c55e', '#3b82f6', '#f59e0b', '#a855f7', '#14b8a6', '#f97316', '#eab308'];
+    const color = palette[idx % palette.length];
     return {
       id: nextId(),
       position: { x: 400, y: 300 },
       velocity: { x: 0, y: 0 },
+      acceleration: { x: 0, y: 0 },
       // Damageable
       health: 100,
       maxHealth: 100,
       // Renderable
-      shape: { type: 'rect', width: 20, height: 20, size: 20 },
-      color: '#4ade80',
+      shape: { type: 'triangle', base: 24, height: 24, size: 24, orientation: 0 },
+      color,
       // Controllable
       controllerId,
       current: {
