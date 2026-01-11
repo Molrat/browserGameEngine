@@ -14,6 +14,8 @@ import { StateInitializer } from './game/state/StateInitializer';
 import { SetPreviousControllerSystem } from './game/systems/SetPreviousControllerSystem';
 import { ReconnectControllerRenderer } from './render/gameState/ui/ReconnectControllerRenderer';
 import { StartMenuRenderer } from './render/ui/StartMenuRenderer';
+import { ControllerSystemInStartMenu } from './game/systems/startMenu/ControllerSystemInStartMenu';
+import { AssignButtonsToPlayerSystem } from './game/systems/AssignButtonsToPlayerSystem';
 
 const canvas = document.getElementById('game') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -35,6 +37,8 @@ const inputInjectors = [
 ];
 
 const systems = [
+    new ControllerSystemInStartMenu(),
+    new AssignButtonsToPlayerSystem(),
     new DisconnectCheckSystem(),
     new ControlMovementTestSystem(),
     new MovementSystem(),

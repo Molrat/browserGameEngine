@@ -21,9 +21,6 @@ export class ControllerSystemInStartMenu implements ISystem {
 
         // Edge-detect Cross/Triangle by controller index in pads, assign slots by join order
         state.input.controllers.forEach((controller, index) => {
-            const triangle = controller.triangle;
-            const previousTriangle = state.input.previousControllers[index]?.triangle || false;
-
             // Find slot for this controller index-based id, if any
             let slot = connections.findIndex(pc => pc.controllerId === controller.id);
             if (slot === -1) {
@@ -36,7 +33,7 @@ export class ControllerSystemInStartMenu implements ISystem {
             else{
                 if (connections[slot].status === 'joined') {
                     const previousTriangle = state.input.previousControllers[index]?.triangle || false;
-                    if (triangle && !previousTriangle) {
+                    if (controller.triangle && !previousTriangle) {
                         this.readyPlayer(connections[slot], slot, eventBus);
                     }
                 }
