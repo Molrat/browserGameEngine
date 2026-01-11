@@ -1,5 +1,5 @@
-import type { Player } from './Player';
-import { nextId } from '../../../utils/id';
+import type { Player } from '../Player';
+import { nextId } from '../../../../utils/id';
 
 export class PlayerFactory {
   static create(controllerId: string): Player {

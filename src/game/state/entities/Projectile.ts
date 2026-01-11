@@ -1,5 +1,5 @@
 import type { Movable } from '../components/Movable';
-import type { Renderable } from '../components/Renderable';
-import type { Entity } from '../Entity';
+import type { Physical } from '../components/Physical';
+import type { Identifiable } from '../Identifiable';
 
-export type Projectile = Entity & Movable & Renderable;
+export type Projectile = Identifiable & Movable & Physical;

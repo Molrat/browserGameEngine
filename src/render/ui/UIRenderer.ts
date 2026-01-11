@@ -1,12 +1,12 @@
-import type { GameState } from '../../../game/state/GameState';
-import { IRenderer } from '../../IRenderer';
+import type { GameState } from '../../game/state/GameState';
+import { IRenderer } from '../IRenderer';
 import { StartMenuRenderer } from './StartMenuRenderer';
-import { ReconnectControllerRenderer } from './ReconnectControllerRenderer';
+import { ReconnectControllerRenderer } from '../gameState/ui/ReconnectControllerRenderer';
 
 export class UIRenderer implements IRenderer {
   private startMenuRenderer: StartMenuRenderer;
   private reconnectControllerRenderer: ReconnectControllerRenderer;
-  constructor(ctx: CanvasRenderingContext2D) {
+  constructor(private ctx: CanvasRenderingContext2D) {
     this.startMenuRenderer = new StartMenuRenderer(ctx);
     this.reconnectControllerRenderer = new ReconnectControllerRenderer(ctx);
   }

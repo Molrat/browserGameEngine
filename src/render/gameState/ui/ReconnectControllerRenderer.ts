@@ -1,5 +1,7 @@
 import { IRenderer } from "../../IRenderer";
 import type { GameState } from "../../../game/state/GameState";
+import { CanvasDrawer } from "../../common/CanvasDrawer";
+import { TextDrawer } from "../../common/TextDrawer";
 
 export class ReconnectControllerRenderer implements IRenderer {
   constructor(private ctx: CanvasRenderingContext2D) {}
@@ -9,17 +11,8 @@ export class ReconnectControllerRenderer implements IRenderer {
     const { ctx } = this;
     const { width, height } = ctx.canvas;
 
-    ctx.save();
-    ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = '#111';
-    ctx.fillRect(0, 0, width, height);
-
-    ctx.fillStyle = '#fff';
-    ctx.font = '20px sans-serif';
-    const message = 'Reconnect controller';
-    const textWidth = ctx.measureText(message).width;
-    ctx.fillText(message, (width - textWidth) / 2, height / 2);
-
-    ctx.restore();
+    CanvasDrawer.clear(ctx);
+    CanvasDrawer.fillBackground(ctx, '#111');
+    TextDrawer.drawCenteredOnCanvas(ctx, 'Reconnect controller', height / 2, '#fff', '20px sans-serif');
   }
 }

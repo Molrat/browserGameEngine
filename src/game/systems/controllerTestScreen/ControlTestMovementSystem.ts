@@ -4,7 +4,7 @@ import type { EventBus } from '../../events/EventBus';
 import { isControllableMovable } from '../../queries/Combined/isControllableMovable';
 import { IControllable } from '../../queries/Controllable/IControllable';
 import { IMovable } from '../../queries/Movable/IMovable';
-import { Entity } from '../../state/Entity';
+import { Identifiable } from '../../state/Identifiable';
 
 export class ControlMovementTestSystem implements ISystem {
   private speed = 200; // pixels per second
@@ -17,7 +17,7 @@ export class ControlMovementTestSystem implements ISystem {
     }
   }
 
-  private moveEntity(entity: Entity & IControllable & IMovable) {
+  private moveEntity(entity: Identifiable & IControllable & IMovable) {
     const speed = 200; // pixels per second
     entity.velocity.x = entity.current.leftStick.x * this.speed;
     entity.velocity.y = entity.current.leftStick.y * this.speed;
@@ -28,9 +28,7 @@ export class ControlMovementTestSystem implements ISystem {
     if (mag2 > 0.01) {
       const angle = Math.atan2(ry, rx)  + 0.5 * Math.PI; // screen Y is downwards
       // Apply to renderable shape orientation if available
-      if ((entity as any).shape) {
-        (entity as any).shape.orientation = angle;
-      }
+      entity.orientation = angle;
     }
   }
 }

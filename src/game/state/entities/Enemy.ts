@@ -1,6 +1,6 @@
 import type { Movable } from '../components/Movable';
 import type { Damageable } from '../components/Damageable';
-import type { Renderable } from '../components/Renderable';
-import type { Entity } from '../Entity';
+import type { Physical } from '../components/Physical';
+import type { Identifiable } from '../Identifiable';
 
-export type Enemy = Entity & Movable & Damageable & Renderable;
+export type Enemy = Identifiable & Movable & Damageable & Physical;

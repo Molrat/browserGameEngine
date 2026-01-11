@@ -1,5 +1,5 @@
 import { EventBus } from "../../events/EventBus";
-import { PlayerFactory } from "../../state/entities/PlayerFactory";
+import { PlayerFactory } from "../../state/entities/Factories/PlayerFactory";
 import { GameState } from "../../state/GameState";
 import { ISystem } from "../ISystem";
 

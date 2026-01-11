@@ -1,28 +1,24 @@
 import { Vector2 } from "../../../math/Vector2";
+import { Positionable } from "./Positionable";
 
-type BaseShape = {
-  size: number;
-  orientation?: number; // radians
-};
-
-export type Rectangle  = BaseShape &{
+export type Rectangle = {
     type: 'rect';
     width: number;
     height: number;
 }
 
-export type Circle = BaseShape & {
+export type Circle = {
     type: 'circle';
     radius: number;
 }
 
-export type Triangle = BaseShape & {
+export type Triangle = {
     type: 'triangle';
     base: number;
     height: number;
 }
 
-export type Polygon = BaseShape & {
+export type Polygon = {
     type: 'polygon';
     points: Vector2[]; // relative to 0,0
 }
@@ -30,8 +26,7 @@ export type Polygon = BaseShape & {
 // Generic Shape
 export type Shape = Rectangle | Circle | Triangle | Polygon;
 
-export type Renderable = {
+export type Physical = Positionable & {
   shape: Shape;
   color: string;
-  position: Vector2;
 };

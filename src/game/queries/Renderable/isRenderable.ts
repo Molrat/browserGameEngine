@@ -1,6 +1,6 @@
-import type { Entity } from '../../state/Entity';
-import type { Renderable } from '../../state/components/Renderable';
+import type { Identifiable } from '../../state/Identifiable';
+import { IRenderable } from './IRenderable';
 
-export function isRenderable(e: Entity): e is Entity & Renderable {
-  return 'shape' in e && 'color' in e;
+export function isRenderable(e: Identifiable): e is Identifiable & IRenderable {
+  return 'shape' in e && 'position' in e && 'orientation' in e && 'color' in e;
 }

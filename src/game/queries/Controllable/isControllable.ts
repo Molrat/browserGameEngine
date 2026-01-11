@@ -1,6 +1,6 @@
-import { Entity } from "../../state/Entity";
+import { Identifiable } from "../../state/Identifiable";
 import { IControllable } from "./IControllable";
 
-export function isControllable(e: Entity): e is Entity & IControllable {
+export function isControllable(e: Identifiable): e is Identifiable & IControllable {
   return 'controllerId' in e;
 }

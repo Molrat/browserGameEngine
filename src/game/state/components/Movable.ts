@@ -1,8 +1,7 @@
 import type { Vector2 } from '../../../math/Vector2';
+import { Positionable } from './Positionable';
 
-export type Movable = {
-  position: Vector2;
+export type Movable = Positionable & {
   velocity: Vector2;
   acceleration: Vector2;
-  orientation: number; // radians
 };

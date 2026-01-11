@@ -1,5 +1,5 @@
 export type EntityId = string;
 
-export type Entity = {
+export type Identifiable = {
     id: string;
 };

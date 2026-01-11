@@ -1,8 +1,3 @@
-import { Shape } from "../../state/components/Renderable";
+import { Physical, Shape } from "../../state/components/Physical";
 
-export interface IRenderable{
-      shape: Shape;
-      color: string;
-      size: number;
-      orientation?: number;
-}
+export interface IRenderable extends Physical{}
