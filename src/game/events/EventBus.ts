@@ -1,6 +1,6 @@
 import { GameEvent } from "./eventTypes/GameEvent";
 
-class EventBus {
+export class EventBus {
   private queue: GameEvent[] = [];
 
   emit(event: GameEvent) {
