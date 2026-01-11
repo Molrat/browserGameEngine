@@ -1,5 +1,5 @@
 import type { GameState } from '../../../game/state/GameState';
-import { IRenderer } from '../../IRenderer';
+import { IRenderer } from '../../IGameStateRenderer';
 import { getTrianglePoints, transformPoints } from '../../../math/triangles';
 
 export class WorldRenderer implements IRenderer {

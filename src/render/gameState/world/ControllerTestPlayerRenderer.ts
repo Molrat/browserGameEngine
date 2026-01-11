@@ -1,4 +1,4 @@
-import { IRenderer } from "../../IRenderer";
+import { IRenderer } from "../../IGameStateRenderer";
 import type { GameState } from "../../../game/state/GameState";
 import { Vector2 } from "../../../math/Vector2";
 import { PolygonDrawer } from "../../common/PolygonDrawer";

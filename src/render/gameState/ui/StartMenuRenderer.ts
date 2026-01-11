@@ -1,4 +1,4 @@
-import { IRenderer } from "../../IRenderer";
+import { IRenderer } from "../../IGameStateRenderer";
 import type { GameState } from "../../../game/state/GameState";
 
 export class StartMenuRenderer implements IRenderer{

@@ -8,7 +8,7 @@ import { ControllerTestBackgroundRenderer } from './render/gameState/world/Contr
 import { ControllerTestPlayerRenderer } from './render/gameState/world/ControllerTestPlayerRenderer';
 import { StartMenuSoundPlayer } from './soundPlayers/StartMenuSoundPlayer';
 import { ControlMovementTestSystem } from './game/systems/controllerTestScreen/ControlTestMovementSystem';
-import { ControllersInjector } from './input/ControllersInjector';
+import { ControllersInjector } from './deviceInput/ControllersInjector';
 import { EventBus } from './game/events/EventBus';
 import { StateInitializer } from './game/state/StateInitializer';
 import { SetPreviousControllerSystem } from './game/systems/SetPreviousControllerSystem';
@@ -30,12 +30,15 @@ window.addEventListener('resize', resizeCanvasToViewport);
 
 const gameState = StateInitializer.createInitialGameState();
 
+// EVENTS: Effects and sounds are triggered by events emitted during game update to the bus.
 const eventBus = new EventBus();
 
+// DEVICE INPUT: the input injectors read device input such as controllers and inject into gamestate
 const inputInjectors = [
     new ControllersInjector(),
 ];
 
+// GAMESTATE UPDATE SYSTEMS: systems update gamestate in series and emit events
 const systems = [
     new ControllerSystemInStartMenu(),
     new AssignButtonsToPlayerSystem(),
@@ -45,7 +48,8 @@ const systems = [
     new SetPreviousControllerSystem(),
 ]
 
-const renderers = [
+// DEVICE OUTPUT: Renderers, Effects, SoundPlayers
+const gameStateRenderers = [
     new ReconnectControllerRenderer(ctx),
     new StartMenuRenderer(ctx),
     new ControllerTestBackgroundRenderer(ctx),
@@ -53,21 +57,24 @@ const renderers = [
     new WorldRenderer(ctx),
 ];
 
+// Effect renderers only take events from the bus as input, such as "player joined"
 const effectRenderers = [
     new PlayerJoinedEffectRenderer(ctx),
     new PlayerReadyEffectRenderer(ctx),
 ];
 
+// Sound players only take events from the bus as input
 const soundPlayers = [
     new StartMenuSoundPlayer(),
 ];
 
+// Game loop triggers each frame: input injection -> gamestate update ->gamestate rendering -> effect rendering -> sound playing 
 const loop = new GameLoop(
     gameState, 
     eventBus, 
     inputInjectors, 
     systems, 
-    renderers, 
+    gameStateRenderers, 
     effectRenderers, 
     soundPlayers);
 

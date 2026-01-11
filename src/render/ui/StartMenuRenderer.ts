@@ -1,4 +1,4 @@
-import { IRenderer } from "../IRenderer";
+import { IRenderer } from "../IGameStateRenderer";
 import type { GameState } from "../../game/state/GameState";
 import type { PlayerConnectionState } from "../../game/state/ui/StartMenuState";
 import { CanvasDrawer } from "../common/CanvasDrawer";

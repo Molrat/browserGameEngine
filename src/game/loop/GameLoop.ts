@@ -1,9 +1,9 @@
 import { EventBus } from '../events/EventBus';
-import { IRenderer} from '../../render/IRenderer';
+import { IRenderer} from '../../render/IGameStateRenderer';
 import { IEffectRenderer } from '../../render/effects/IEffectRenderer';
 import { ISoundPlayer } from '../../soundPlayers/ISoundPlayer';
 import { ISystem } from '../systems/ISystem';
-import { IInputInjector } from '../../input/IInputInjector';
+import { IInputInjector } from '../../deviceInput/IInputInjector';
 import { GameState } from '../state/GameState';
 
 
