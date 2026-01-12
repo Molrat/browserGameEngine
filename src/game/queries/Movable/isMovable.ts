@@ -1,4 +1,4 @@
-import type { Identifiable } from '../../state/Identifiable';
+import type { Identifiable } from '../../state/components/Identifiable';
 import { IMovable } from './IMovable';
 
 export function isMovable(e: Identifiable): e is Identifiable & IMovable {

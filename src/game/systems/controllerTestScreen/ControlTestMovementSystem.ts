@@ -4,7 +4,7 @@ import type { EventBus } from '../../events/EventBus';
 import { isControllableMovable } from '../../queries/Combined/isControllableMovable';
 import { IControllable } from '../../queries/Controllable/IControllable';
 import { IMovable } from '../../queries/Movable/IMovable';
-import { Identifiable } from '../../state/Identifiable';
+import { Identifiable } from '../../state/components/Identifiable';
 
 export class ControlMovementTestSystem implements ISystem {
   private speed = 200; // pixels per second

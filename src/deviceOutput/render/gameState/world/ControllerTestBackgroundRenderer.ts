@@ -1,6 +1,6 @@
-import { IRenderer } from "../../IGameStateRenderer";
+import { IRenderer } from "../../IRenderer";
 import { LineDrawer } from "../../common/LineDrawer";
-import type { GameState } from "../../../game/state/GameState";
+import type { GameState } from "../../../../game/state/GameState";
 import { CanvasDrawer } from "../../common/CanvasDrawer";
 
 export class ControllerTestBackgroundRenderer implements IRenderer {

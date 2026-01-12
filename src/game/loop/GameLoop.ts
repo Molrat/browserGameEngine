@@ -1,5 +1,5 @@
 import { EventBus } from '../events/EventBus';
-import { IRenderer} from '../../render/IGameStateRenderer';
+import { IRenderer} from '../../render/IRenderer';
 import { IEffectRenderer } from '../../render/effects/IEffectRenderer';
 import { ISoundPlayer } from '../../soundPlayers/ISoundPlayer';
 import { ISystem } from '../systems/ISystem';

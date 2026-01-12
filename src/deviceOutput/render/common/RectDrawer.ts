@@ -30,4 +30,22 @@ export class RectDrawer {
     ctx.strokeRect(x, y, width, height);
     ctx.restore();
   }
+
+  static strokeAlpha(
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    color: string,
+    lineWidth: number,
+    alpha: number
+  ) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.strokeRect(x, y, width, height);
+    ctx.restore();
+  }
 }

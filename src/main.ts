@@ -1,19 +1,19 @@
 import { GameLoop } from './game/loop/GameLoop';
 import { MovementSystem } from './game/systems/MovementSystem';
 import { DisconnectCheckSystem } from './game/systems/DisconnectCheckSystem';
-import { PlayerJoinedEffectRenderer } from './render/effects/PlayerJoinedEffectRenderer';
-import { PlayerReadyEffectRenderer } from './render/effects/PlayerReadyEffectRenderer';
-import { WorldRenderer } from './render/gameState/world/WorldRenderer';
-import { ControllerTestBackgroundRenderer } from './render/gameState/world/ControllerTestBackgroundRenderer';
-import { ControllerTestPlayerRenderer } from './render/gameState/world/ControllerTestPlayerRenderer';
-import { StartMenuSoundPlayer } from './soundPlayers/StartMenuSoundPlayer';
+import { PlayerJoinedEffectRenderer } from './deviceOutput/render/effects/PlayerJoinedEffectRenderer';
+import { PlayerReadyEffectRenderer } from './deviceOutput/render/effects/PlayerReadyEffectRenderer';
+import { WorldRenderer } from './deviceOutput/render/gameState/world/WorldRenderer';
+import { ControllerTestBackgroundRenderer } from './deviceOutput/render/gameState/world/ControllerTestBackgroundRenderer';
+import { ControllerTestPlayerRenderer } from './deviceOutput/render/gameState/world/ControllerTestPlayerRenderer';
+import { StartMenuSoundPlayer } from './deviceOutput/soundPlayers/StartMenuSoundPlayer';
 import { ControlMovementTestSystem } from './game/systems/controllerTestScreen/ControlTestMovementSystem';
 import { ControllersInjector } from './deviceInput/ControllersInjector';
 import { EventBus } from './game/events/EventBus';
 import { StateInitializer } from './game/state/StateInitializer';
 import { SetPreviousControllerSystem } from './game/systems/SetPreviousControllerSystem';
-import { ReconnectControllerRenderer } from './render/gameState/ui/ReconnectControllerRenderer';
-import { StartMenuRenderer } from './render/ui/StartMenuRenderer';
+import { ReconnectControllerRenderer } from './deviceOutput/render/gameState/ui/ReconnectControllerRenderer';
+import { StartMenuRenderer } from './deviceOutput/render/gameState/ui/StartMenuRenderer';
 import { ControllerSystemInStartMenu } from './game/systems/startMenu/ControllerSystemInStartMenu';
 import { AssignButtonsToPlayerSystem } from './game/systems/AssignButtonsToPlayerSystem';
 

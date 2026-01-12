@@ -1,4 +1,4 @@
-import type { Identifiable } from '../../state/Identifiable';
+import type { Identifiable } from '../../state/components/Identifiable';
 import { IRenderable } from './IRenderable';
 
 export function isRenderable(e: Identifiable): e is Identifiable & IRenderable {

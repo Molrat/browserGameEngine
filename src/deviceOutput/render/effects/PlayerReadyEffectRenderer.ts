@@ -1,6 +1,7 @@
 import { EffectsState } from "./EffectsState";
-import { GameEvent } from "../../game/events/eventTypes/GameEvent";
+import { GameEvent } from "../../../game/events/eventTypes/GameEvent";
 import { IEffectRenderer } from "./IEffectRenderer";
+import { RectDrawer } from "../common/RectDrawer";
 
 export class PlayerReadyEffectRenderer implements IEffectRenderer {
   private effectsState: EffectsState = {};
@@ -42,15 +43,21 @@ export class PlayerReadyEffectRenderer implements IEffectRenderer {
       const alpha = 1 - t;
       const thickness = 4 + Math.sin(t * Math.PI) * 4;
 
-      ctx.save();
-      ctx.globalAlpha = alpha;
-      ctx.strokeStyle = '#22c55e'; // green
-      ctx.lineWidth = thickness;
-      ctx.strokeRect(x - thickness / 2, y - thickness / 2, rectW + thickness, rectH + thickness);
+      // Stroke border with alpha
+      RectDrawer.strokeAlpha(
+        ctx,
+        x - thickness / 2,
+        y - thickness / 2,
+        rectW + thickness,
+        rectH + thickness,
+        '#22c55e',
+        thickness,
+        alpha
+      );
 
-      ctx.fillStyle = 'rgba(34, 197, 94, 0.2)';
-      ctx.fillRect(x, y, rectW, rectH);
-      ctx.restore();
+      // Fill with combined alpha
+      const fillAlpha = alpha * 0.2;
+      RectDrawer.fill(ctx, x, y, rectW, rectH, 'rgba(34, 197, 94, 1)', fillAlpha);
     }
 
     this.effectsState.readyEffects = remaining;

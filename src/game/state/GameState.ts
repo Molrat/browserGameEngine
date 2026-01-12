@@ -1,4 +1,4 @@
-import type { Identifiable } from './Identifiable';
+import type { Identifiable } from './components/Identifiable';
 import type { UIState } from './ui/UIState';
 import type { InputState } from './input/InputState';
 

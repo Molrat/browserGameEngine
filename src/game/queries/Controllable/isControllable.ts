@@ -1,4 +1,4 @@
-import { Identifiable } from "../../state/Identifiable";
+import { Identifiable } from "../../state/components/Identifiable";
 import { IControllable } from "./IControllable";
 
 export function isControllable(e: Identifiable): e is Identifiable & IControllable {

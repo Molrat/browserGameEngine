@@ -1,6 +1,6 @@
-import { Vector2 } from "../../math/Vector2";
-import type { IRenderable } from "../../game/queries/Renderable/IRenderable";
-import { getTrianglePoints, transformPoints } from "../../math/triangles";
+import { Vector2 } from "../../../math/Vector2";
+import type { IRenderable } from "../../../game/queries/Renderable/IRenderable";
+import { getTrianglePoints, transformPoints } from "../../../math/triangles";
 
 export class PolygonDrawer {
   static fill(ctx: CanvasRenderingContext2D, points: Vector2[], fillStyle?: string) {

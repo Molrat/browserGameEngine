@@ -36,20 +36,23 @@
 src/
 ├─ game/
 │  ├─ state/          # Pure data: entities & components
-│  │  ├─ GameState.ts
-│  │  ├─ Entity.ts
-│  │  ├─ components/  # Movable.ts, Damageable.ts, Renderable.ts
+│  │  ├─ GameState.ts # type containing entire state of the game
+│  │  ├─ components/  # Identifiable.ts, Movable.ts, Damageable.ts
 │  │  └─ entities/    # Player.ts, Enemy.ts, Projectile.ts
 │  ├─ systems/        # Game logic systems
-│  ├─ queries/        # Runtime type guards (e.g., IMovable)
+│  ├─ queries/        # Runtime type guards (e.g., IMovable) for filtering entities for systems
 │  ├─ loop/           # Game loop orchestration
 │  ├─ events/         # Side-effect events
 │  └─ config/         # Constants, balance
-├─ input/             # Input buffer / adapters
-├─ render/            # Renderer
-│  ├─ gameState/      # Rendering based on GameState
-│  │  ├─ world/          # world and entity rendering
-│  │  ├─ ui/             # UI rendering (HUD, menus)
+├─ deviceInput/       # Input buffer / adapters
+├─ deviceOutput/      # Output: rendering, sound
+│  ├─ render/
+│  │  ├─ common/
+│  │  ├─ effects/
+│  │  ├─ gameState/  # Rendering based on GameState
+│  │  |  ├─ ui/      # UI rendering (HUD, menus)
+│  │  |  ├─ world/   # world and entity rendering
+│  ├─ soundPlayers/         
 │  ├─ effects/        # Event-driven visual effects / animations
 ├─ soundPlayers/      # Event-driven sound playback systems
 ├─ math/              # Vector math, collision functions

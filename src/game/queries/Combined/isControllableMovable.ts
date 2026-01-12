@@ -1,4 +1,4 @@
-import { Identifiable } from "../../state/Identifiable";
+import { Identifiable } from "../../state/components/Identifiable";
 import { IControllable } from "../Controllable/IControllable";
 import { IMovable } from "../Movable/IMovable";
 import { isControllable } from "../Controllable/isControllable";

@@ -1,7 +1,7 @@
 import { ISoundPlayer } from "./ISoundPlayer";
-import { GameEvent } from "../game/events/eventTypes/GameEvent";
-import joinUrl from "../assets/sounds/playerJoined.mp3";
-import readyUrl from "../assets/sounds/playerReady.mp3";
+import { GameEvent } from "../../game/events/eventTypes/GameEvent";
+import joinUrl from "../../assets/sounds/playerJoined.mp3";
+import readyUrl from "../../assets/sounds/playerReady.mp3";
 
 export class StartMenuSoundPlayer implements ISoundPlayer {
   private joinAudio: HTMLAudioElement;

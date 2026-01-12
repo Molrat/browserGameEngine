@@ -1,5 +1,5 @@
-import { IRenderer as IGameStateRenderer } from "../../IGameStateRenderer";
-import type { GameState } from "../../../game/state/GameState";
+import { IRenderer as IGameStateRenderer } from "../../IRenderer";
+import type { GameState } from "../../../../game/state/GameState";
 import { CanvasDrawer } from "../../common/CanvasDrawer";
 import { TextDrawer } from "../../common/TextDrawer";
 
