@@ -14,11 +14,13 @@ import { StateInitializer } from './game/state/StateInitializer';
 import { SetPreviousControllerSystem } from './game/systems/SetPreviousControllerSystem';
 import { ReconnectControllerRenderer } from './deviceOutput/render/gameState/ui/ReconnectControllerRenderer';
 import { StartMenuRenderer } from './deviceOutput/render/gameState/ui/StartMenuRenderer';
+import { CanvasRenderAPI } from './deviceOutput/render/common/CanvasRenderAPI';
 import { ControllerSystemInStartMenu } from './game/systems/startMenu/ControllerSystemInStartMenu';
 import { AssignButtonsToPlayerSystem } from './game/systems/AssignButtonsToPlayerSystem';
 
 const canvas = document.getElementById('game') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+const renderAPI = new CanvasRenderAPI(ctx);
 
 function resizeCanvasToViewport() {
     canvas.width = window.innerWidth;
@@ -50,17 +52,17 @@ const systems = [
 
 // DEVICE OUTPUT: Renderers, Effects, SoundPlayers
 const gameStateRenderers = [
-    new ReconnectControllerRenderer(ctx),
-    new StartMenuRenderer(ctx),
-    new ControllerTestBackgroundRenderer(ctx),
-    new ControllerTestPlayerRenderer(ctx),
-    new WorldRenderer(ctx),
+    new ReconnectControllerRenderer(renderAPI),
+    new StartMenuRenderer(renderAPI),
+    new ControllerTestBackgroundRenderer(renderAPI),
+    new ControllerTestPlayerRenderer(renderAPI),
+    new WorldRenderer(renderAPI),
 ];
 
 // Effect renderers only take events from the bus as input, such as "player joined"
 const effectRenderers = [
-    new PlayerJoinedEffectRenderer(ctx),
-    new PlayerReadyEffectRenderer(ctx),
+    new PlayerJoinedEffectRenderer(renderAPI),
+    new PlayerReadyEffectRenderer(renderAPI),
 ];
 
 // Sound players only take events from the bus as input

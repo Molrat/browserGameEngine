@@ -1,20 +1,19 @@
 import { IRenderer } from "../../IRenderer";
 import type { GameState } from "../../../../game/state/GameState";
-import { CanvasDrawer } from "../../common/CanvasDrawer";
-import { RectDrawer } from "../../common/RectDrawer";
-import { TextDrawer } from "../../common/TextDrawer";
+import type { IRenderAPI } from "../../common/IRenderAPI";
 
 export class StartMenuRenderer implements IRenderer{
-    constructor(private ctx: CanvasRenderingContext2D) {}
+    constructor(private draw: IRenderAPI) {}
 
     render(gameState: GameState): void {
         if (gameState.ui.openMenu !== 'start') return;
         const s = gameState.ui.startMenu;
         const statuses = s.playerConnections.map(pc => pc.status);
-        const { ctx } = this;
-        const { width, height } = ctx.canvas;
-        CanvasDrawer.clear(ctx);
-        CanvasDrawer.fillBackground(ctx, '#111');
+        const { draw } = this;
+        const width = draw.width();
+        const height = draw.height();
+        draw.clear();
+        draw.fillBackground('#111');
 
         const cols = 4;
         const rows = 2;
@@ -30,11 +29,11 @@ export class StartMenuRenderer implements IRenderer{
             const st = statuses[i];
 
             const tileColor = st === 'ready' ? '#16a34a' : st === 'joined' ? '#2563eb' : '#374151';
-            RectDrawer.fill(ctx, x, y, rectW, rectH, tileColor);
+            draw.rectFill(x, y, rectW, rectH, tileColor);
 
             const label = st === 'notJoined' ? 'Press X to join' : st === 'joined' ? 'Press Triangle to be ready' : 'Ready!';
-            TextDrawer.draw(ctx, `P${i + 1}`, x + 12, y + 24, '#fff', '16px sans-serif');
-            TextDrawer.draw(ctx, label, x + 12, y + 48, '#fff', '16px sans-serif');
+                        draw.textDraw(`P${i + 1}`, x + 12, y + 24, '#fff', '16px sans-serif');
+                        draw.textDraw(label, x + 12, y + 48, '#fff', '16px sans-serif');
         }
     }
 }

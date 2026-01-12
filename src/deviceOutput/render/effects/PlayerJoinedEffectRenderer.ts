@@ -1,11 +1,11 @@
 import { EffectsState } from "./EffectsState";
 import { GameEvent } from "../../../game/events/eventTypes/GameEvent";
 import { IEffectRenderer } from "./IEffectRenderer";
-import { RectDrawer } from "../common/RectDrawer";
+import type { IRenderAPI } from "../common/IRenderAPI";
 
 export class PlayerJoinedEffectRenderer implements IEffectRenderer {
     private effectsState: EffectsState = {};
-    constructor(private ctx: CanvasRenderingContext2D) {}
+    constructor(private draw: IRenderAPI) {}
 
     render(events: GameEvent[]) {
         const now = performance.now();
@@ -19,13 +19,13 @@ export class PlayerJoinedEffectRenderer implements IEffectRenderer {
         }
 
         // Draw active join effects (fade/scale over time)
-        const { ctx } = this;
+        const { draw } = this;
         const joinEffects = this.effectsState.joinEffects ?? [];
         const cols = 4;
         const rows = 2;
         const pad = 20;
-        const width = ctx.canvas.width;
-        const height = ctx.canvas.height;
+        const width = draw.width();
+        const height = draw.height();
         const rectW = (width - pad * (cols + 1)) / cols;
         const rectH = (height - pad * (rows + 1)) / rows;
 
@@ -47,8 +47,7 @@ export class PlayerJoinedEffectRenderer implements IEffectRenderer {
                         const thickness = 4 + Math.sin(t * Math.PI) * 4;
 
                         // Stroke border with alpha
-                        RectDrawer.strokeAlpha(
-                            ctx,
+                        draw.rectStrokeAlpha(
                             x - thickness / 2,
                             y - thickness / 2,
                             rectW + thickness,
@@ -60,7 +59,7 @@ export class PlayerJoinedEffectRenderer implements IEffectRenderer {
 
                         // Simple flare fill with combined alpha
                         const fillAlpha = alpha * 0.2;
-                        RectDrawer.fill(ctx, x, y, rectW, rectH, 'rgba(245, 158, 11, 1)', fillAlpha);
+                        draw.rectFill(x, y, rectW, rectH, 'rgba(245, 158, 11, 1)', fillAlpha);
         }
 
         // Keep only non-expired animations
