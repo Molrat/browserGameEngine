@@ -8,7 +8,10 @@ import { ControllerTestBackgroundRenderer } from './deviceOutput/render/gameStat
 import { ControllerTestPlayerRenderer } from './deviceOutput/render/gameState/world/ControllerTestPlayerRenderer';
 import { StartMenuSoundPlayer } from './deviceOutput/soundPlayers/StartMenuSoundPlayer';
 import { ControlMovementTestSystem } from './game/systems/controllerTestScreen/ControlTestMovementSystem';
-import { ControllersInjector } from './deviceInput/ControllersInjector';
+import { ControllersInjector } from './deviceInput/controllerInput/ControllersInjector';
+import { BrowserGamepadProvider as FourPlayerGamepadProvider } from './deviceInput/controllerInput/controllerProviders/BrowserGamepadProvider';
+import { WebHIDGamepadProvider as EightPlayerGamepadProvider } from './deviceInput/controllerInput/controllerProviders/WebHIDGamepadProvider/WebHIDGamepadProvider';
+import { CombinedGamepadProvider } from './deviceInput/controllerInput/controllerProviders/CombinedGamepadProvider';
 import { EventBus } from './game/events/EventBus';
 import { StateInitializer } from './game/state/StateInitializer';
 import { SetPreviousControllerSystem } from './game/systems/SetPreviousControllerSystem';
@@ -37,7 +40,12 @@ const eventBus = new EventBus();
 
 // DEVICE INPUT: the input injectors read device input such as controllers and inject into gamestate
 const inputInjectors = [
-    new ControllersInjector(),
+        new ControllersInjector(
+            new CombinedGamepadProvider([ // Tries to use WebHID first (8 player support), falls back to browser API
+                new EightPlayerGamepadProvider(), // Work in progress!
+                new FourPlayerGamepadProvider(),
+            ])
+        ),
 ];
 
 // GAMESTATE UPDATE SYSTEMS: systems update gamestate in series and emit events
